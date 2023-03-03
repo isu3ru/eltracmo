@@ -1,0 +1,186 @@
+# Database Spec for Electronic Tracking and Monitoring System for Vehicle Repair and Service Center
+
+-   users (User)
+    -   id
+    -   name
+    -   email_verified_at
+    -   password
+    -   role (ADMIN/STAFF/CUSTOMER) -> should come with the new model
+
+-   employees (Employee)
+    -   id
+    -   name
+    -   address
+    -   mobile_number
+    -   image
+    -   department
+    -   user_id (null)
+    -   employment_date
+    -   epf_number
+
+-   customers (Customer)
+    -   id
+    -   first_name
+    -   last_name
+    -   mobile_number
+    -   address
+    -   user_id (null)
+    -   mobile_number_verified_at
+    -   is_mobile_customer (true/false)
+
+-   vehicles (Vehicle)
+    -   id
+    -   customer_id
+    -   make
+    -   model
+    -   manufactured_year
+    -   registered_year
+    -   registration_number
+    -   color
+    -   remarks
+
+-   suppliers (Supplier)
+    -   id
+    -   name
+    -   address
+    -   telephone
+    -   email
+    -   contact_person_name
+    -   contact_person_telephone
+    -   contact_person_email
+
+-   units_of_measures (UnitOfMeasure)
+    - id
+    - name (gram/kilogram/millileters/leters/units)'
+
+-   calculation_units (CalculationUnit)
+    - id
+    - name (gram/kilogram/millileters/leters/units)
+
+-   appointments (Appointment)
+    -   id
+    -   customer_id
+    -   vehicle_id
+    -   appointment_date
+    -   appointment_time
+    -   confirmed_at
+    -   cancelled_at
+    -   cancellation_remarks
+    -   status
+
+-   tasks (Task)
+    -   id
+    -   type (service/repair)
+    -   name
+    -   description
+
+-   items (Item)
+    -   id
+    -   name
+    -   make
+    -   model
+    -   color
+    -   weight (g)
+    -   height (cm)
+    -   length (cm)
+    -   unit_of_measure_id 
+    -   calculation_unit_id
+    -   unit_price
+    -   reorder_qty
+
+-   task_items (TaskItem)
+    -   id
+    -   task_id
+    -   item_id
+    -   issue_qty
+
+-   stocks (Stock)
+    -   id
+    -   sku
+    -   supplier_id
+    -   item_id
+    -   quantity
+    -   free_issue_quantity
+    -   unit_stock_price
+    -   lot_stock_price
+    -   batch_number
+    -   unit_sale_price
+    -   unit_discount_rate
+    -   order_id (null)
+
+-   goods_receivings (GoodsReceiving)
+    -   id
+    -   supplier_id
+    -   received_by_id
+    -   received_at
+    -   remarks
+
+- goods_receieving_items (GoodsReceivingItem)
+    -   id
+    -   goods_receieving_id
+    -   item_id
+    -   qty
+    -   unit_price
+    -   free_issue_quantity (0)
+
+-   goods_issuings (GoodsIssuing)
+    -   id
+    -   job_id
+    -   invoice_id
+
+-   goods_issuing_items (GoodsIssuingItem)
+    -   id
+    -   goods_issuing_id
+    -   stock_id
+    -   qty
+    -   returned_at (null)
+    -   return_reason (null)
+
+-   jobs (Job)
+    -   id
+    -   appointment_id
+    -   type
+    -   remarks
+
+-   job_tasks (JobTask)
+    -   id
+    -   job_id
+    -   task_id
+    -   status
+    -   completed_at
+    -   completed_by
+
+-   job_statuses (JobStatus)
+    -   id
+    -   job_id
+    -   status
+    -   remarks
+
+-   job_items (JobItem)
+    -   id
+    -   item_id
+    -   is_stock_item (true/false)
+    -   received_at
+    -   stock_id
+    -   goods_issuing_id
+    -   qty
+    -   price
+
+-   job_employees (JobEmployee)
+    -   id
+    -   job_id
+    -   employee_id
+    -   remarks
+
+-   invoices (Invoice)
+    -   id
+    -   customer_id
+    -   price
+    -   description
+    -   job_id (null)
+
+- invoice_items (InvoiceItem)
+    -   id
+    -   invoice_id
+    -   description
+    -   item_id
