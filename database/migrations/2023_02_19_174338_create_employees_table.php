@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('department')->nullable();
             $table->uuid('user_id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
         });

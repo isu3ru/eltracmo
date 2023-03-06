@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamp('cancelled_at')->nullable();
             $table->string('cancellation_remarks')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('vehicle_id')->references('id')->on('vehicles');
         });

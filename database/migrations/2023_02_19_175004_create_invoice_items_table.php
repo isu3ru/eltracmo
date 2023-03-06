@@ -14,8 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('invoice_items', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->uuid('invoice_id');
+            $table->type('type'); //job, item, stock, etc
+            $table->uuid('type_id');
+            $table->string('description');
+            $table->unsignedDouble('amount');
+            $table->string('remarks')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('invoice_id')->references('id')->on('invoices');
         });
     }
 
@@ -26,6 +35,9 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('invoice_items', function (Blueprint $table) {
+            $table->dropForeign(['invoice_id']);
+        });
         Schema::dropIfExists('invoice_items');
     }
 };

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->uuid('item_id');
             $table->double('issue_qty');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('task_id')->references('id')->on('tasks');
             $table->foreign('item_id')->references('id')->on('items');

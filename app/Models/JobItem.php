@@ -8,29 +8,34 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class GoodsReceiving extends Model
+class JobItem extends Model
 {
     use HasFactory;
     use HasUuid;
     use SoftDeletes;
 
     protected $fillable = [
-        'id',
-        'supplier_id',
-        'received_by_user_id',
+        'job_id',
+        'item_id',
         'received_at',
-        'reference_number',
-        'remarks',
+        'is_stock_item',
+        'stock_id',
+        'quantity',
     ];
 
-    public function supplier(): BelongsTo
+    public function job(): BelongsTo
     {
-        return $this->belongsTo(Supplier::class);
+        return $this->belongsTo(Job::class);
     }
 
-    public function receivedByUser(): BelongsTo
+    public function item(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Item::class);
+    }
+
+    public function stock(): BelongsTo
+    {
+        return $this->belongsTo(Stock::class);
     }
 
     protected $casts = [

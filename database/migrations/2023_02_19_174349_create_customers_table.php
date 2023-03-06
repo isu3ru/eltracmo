@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamp('mobile_number_verified_at')->nullable();
             $table->boolean('is_mobile_customer')->default(false);
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users');
         });

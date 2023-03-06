@@ -14,8 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('jobs', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->uuid('appointment_id');
+            $table->string('type');
+            $table->string('status');
+            $table->string('remarks')->nullable();
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('appointment_id')->references('id')->on('appointments');
         });
     }
 
@@ -26,6 +33,9 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('jobs', function (Blueprint $table) {
+            $table->dropForeign(['appointment_id']);
+        });
         Schema::dropIfExists('jobs');
     }
 };
