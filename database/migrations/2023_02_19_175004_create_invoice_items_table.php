@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('invoice_items', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('invoice_id');
-            $table->type('type'); //job, item, stock, etc
+            $table->string('type'); //job, item, stock, etc
             $table->uuid('type_id');
             $table->string('description');
             $table->unsignedDouble('amount');

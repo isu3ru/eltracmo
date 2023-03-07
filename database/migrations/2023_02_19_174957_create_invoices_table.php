@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('customer_id');
-            $table->unsugnedDouble('amount');
+            $table->unsignedDouble('amount');
             $table->string('status');
             $table->string('remarks')->nullable();
             $table->timestamp('paid_at')->nullable();
