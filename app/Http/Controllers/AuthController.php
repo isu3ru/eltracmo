@@ -3,23 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     /**
-     * Get the authenticated user
-     */
-    public function user(Request $request)
-    {
-        return $request->user();
-    }
-
-    /**
      * Register a new user
      */
-    public function register(Request $request)
+    public function register(Request $request): JsonResponse
     {
         $request->validate([
             'name' => 'required|string',
@@ -43,7 +36,7 @@ class AuthController extends Controller
     /**
      * Login the user
      */
-    public function login(Request $request)
+    public function login(Request $request): JsonResponse
     {
         $request->validate([
             'email' => 'required|string|email',
@@ -60,10 +53,10 @@ class AuthController extends Controller
             ], 401);
         }
 
-        // create token for the user which expires in a week
+        // Create token for the user which expires in a week.
         $token = $user->createToken(name: 'auth_token', expiresAt: now()->addWeek())->plainTextToken;
 
-        // return the token
+        // Return the token.
         return response()->json([
             'token' => $token
         ]);
@@ -71,8 +64,10 @@ class AuthController extends Controller
 
     /**
      * Logout the user
+     * @param Request $request The HTTP Request.
+     * @return JsonResponse
      */
-    public function logout(Request $request)
+    public function logout(Request $request): JsonResponse
     {
         // revoke the token
         $request->user()->tokens()->delete();
@@ -80,5 +75,13 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Successfully logged out'
         ]);
+    }
+
+    /**
+     * Get the authenticated user
+     */
+    public function user(Request $request)
+    {
+        return $request->user();
     }
 }
