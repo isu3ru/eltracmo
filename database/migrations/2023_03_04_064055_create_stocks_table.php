@@ -24,12 +24,12 @@ return new class extends Migration
             $table->unsignedInteger('batch_number')->default(1);
             $table->unsignedDecimal('unit_sale_price', 10, 2)->default(0.00);
             $table->unsignedDecimal('unit_discount_rate', 10, 2)->default(0.00);
-            $table->uuid('goods_receiving_id')->nullable();
+            $table->uuid('goods_receiving_item_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('item_id')->references('id')->on('items');
-            $table->foreign('goods_receiving_id')->references('id')->on('goods_receivings');
+            $table->foreign('goods_receiving_item_id')->references('id')->on('goods_receiving_items');
         });
     }
 
@@ -42,7 +42,7 @@ return new class extends Migration
     {
         Schema::table('stocks', function (Blueprint $table) {
             $table->dropForeign(['item_id']);
-            $table->dropForeign(['goods_receiving_id']);
+            $table->dropForeign(['goods_receiving_item_id']);
         });
         Schema::dropIfExists('stocks');
     }

@@ -17,8 +17,8 @@ class JobItem extends Model
     protected $fillable = [
         'job_id',
         'item_id',
-        'received_at',
         'is_stock_item',
+        'received_at',
         'stock_id',
         'quantity',
     ];
