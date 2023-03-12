@@ -15,17 +15,16 @@ return new class extends Migration
     {
         Schema::create('goods_receiving_items', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('supplier_id');
-            $table->uuid('item_id');
-            $table->unsignedDouble('quantity', 10, 2)->default(0.00);
+            $table->uuid('goods_receiving_id');
+            $table->uuid('order_item_id');
             $table->unsignedDouble('free_issue_quantity', 10, 2)->default(0.00);
             $table->unsignedDouble('unit_cost', 10, 2)->default(0.00);
             $table->unsignedDouble('total_cost', 10, 2)->default(0.00);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('supplier_id')->references('id')->on('suppliers');
-            $table->foreign('item_id')->references('id')->on('items');
+            $table->foreign('goods_receiving_id')->references('id')->on('goods_receivings');
+            $table->foreign('order_item_id')->references('id')->on('order_items');
         });
     }
 
@@ -37,8 +36,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('goods_receiving_items', function (Blueprint $table) {
-            $table->dropForeign(['supplier_id']);
-            $table->dropForeign(['item_id']);
+            $table->dropForeign(['goods_receiving_id']);
+            $table->dropForeign(['order_item_id']);
         });
         Schema::dropIfExists('goods_receiving_items');
     }

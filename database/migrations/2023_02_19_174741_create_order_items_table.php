@@ -8,35 +8,31 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('task_items', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('task_id');
+            $table->uuid('order_id');
             $table->uuid('item_id');
-            $table->double('qty');
+            $table->unsignedDouble('quantity', 10, 2)->default(0.0);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('task_id')->references('id')->on('tasks');
+            $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('item_id')->references('id')->on('items');
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::table('task_items', function (Blueprint $table) {
-            $table->dropForeign(['task_id']);
+        Schema::table('order_items', function (Blueprint $table) {
+            $table->dropForeign(['order_id']);
             $table->dropForeign(['item_id']);
         });
-        Schema::dropIfExists('task_items');
+        Schema::dropIfExists('order_items');
     }
 };

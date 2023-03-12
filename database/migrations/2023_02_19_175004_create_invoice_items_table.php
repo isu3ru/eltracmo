@@ -17,7 +17,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('invoice_id');
             $table->string('type'); //job, item, stock, etc
-            $table->uuid('type_id');
+            $table->uuid('job_id')->nullable();
+            $table->uuid('item_id')->nullable();
             $table->string('description');
             $table->unsignedDouble('amount');
             $table->string('remarks')->nullable();

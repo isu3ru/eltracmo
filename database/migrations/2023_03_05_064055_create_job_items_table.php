@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('job_items', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('job_id');
-            $table->uuid('item_id');
+            $table->uuid('item_id')->nullable();
+            $table->boolean('is_stock_item')->default(true);
             $table->timestamp('received_at')->nullable();
-            $table->boolean('is_stock_item')->default(false);
             $table->uuid('stock_id')->nullable();
             $table->unsignedDouble('quantity')->default(0);
             $table->timestamps();

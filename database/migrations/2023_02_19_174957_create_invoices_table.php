@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('customer_id');
+            $table->uuid('job_id')->nullable();
             $table->unsignedDouble('amount');
             $table->string('status');
             $table->string('remarks')->nullable();
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('job_id')->references('id')->on('jobs');
         });
     }
 
@@ -38,6 +40,7 @@ return new class extends Migration
     {
         Schema::table('invoices', function (Blueprint $table) {
             $table->dropForeign(['customer_id']);
+            $table->dropForeign(['job_id']);
         });
         Schema::dropIfExists('invoices');
     }
