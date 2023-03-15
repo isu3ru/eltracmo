@@ -47,4 +47,9 @@ class Job extends Model
     {
         return $this->hasMany(JobItem::class);
     }
+
+    public function invoices(): BelongsTo
+    {
+        return $this->belongsTo(Invoice::class);
+    }
 }

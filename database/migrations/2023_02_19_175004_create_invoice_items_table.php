@@ -17,7 +17,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('invoice_id');
             $table->string('type'); //job, item, stock, etc
-            $table->uuid('type_id');
+            $table->uuid('job_id')->nullable();
+            $table->uuid('item_id')->nullable();
             $table->string('description');
             $table->unsignedDouble('amount');
             $table->string('remarks')->nullable();
@@ -25,6 +26,8 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->foreign('job_id')->references('id')->on('jobs');
+            $table->foreign('item_id')->references('id')->on('items');
         });
     }
 
@@ -37,6 +40,8 @@ return new class extends Migration
     {
         Schema::table('invoice_items', function (Blueprint $table) {
             $table->dropForeign(['invoice_id']);
+            $table->dropForeign(['job_id']);
+            $table->dropForeign(['item_id']);
         });
         Schema::dropIfExists('invoice_items');
     }

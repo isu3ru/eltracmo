@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('address')->nullable();
             $table->uuid('user_id')->nullable();
+            $table->string('mobile_number', 10);
             $table->timestamp('mobile_number_verified_at')->nullable();
             $table->boolean('is_mobile_customer')->default(false);
+            $table->string('photo')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

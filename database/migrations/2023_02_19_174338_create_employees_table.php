@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('address')->nullable();
             $table->string('mobile_number', 15)->nullable();
-            $table->string('image')->nullable();
+            $table->string('photo')->nullable();
             $table->string('department')->nullable();
             $table->uuid('user_id');
             $table->timestamps();

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('goods_receivings', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('supplier_id');
+            $table->uuid('order_id');
             $table->uuid('received_by_user_id');
             $table->timestamp('received_at');
             $table->string('reference_number');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('supplier_id')->references('id')->on('suppliers');
+            $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('received_by_user_id')->references('id')->on('users');
         });
     }
@@ -36,7 +36,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('goods_receivings', function (Blueprint $table) {
-            $table->dropForeign(['supplier_id']);
+            $table->dropForeign(['order_id']);
             $table->dropForeign(['received_by_user_id']);
         });
         Schema::dropIfExists('goods_receivings');

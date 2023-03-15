@@ -6,5 +6,4 @@ use App\Repositories\CRUDRepositoryInterface;
 
 interface UserRepositoryInterface extends CRUDRepositoryInterface
 {
-
 }

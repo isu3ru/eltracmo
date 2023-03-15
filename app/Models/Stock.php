@@ -18,7 +18,6 @@ class Stock extends Model
     protected $fillable = [
         'id',
         'sku',
-        'supplier_id',
         'item_id',
         'quantity',
         'free_issue_quantity',
@@ -27,22 +26,17 @@ class Stock extends Model
         'batch_number',
         'unit_sale_price',
         'unit_discount_rate',
-        'order_id',
+        'goods_receiving_item_id',
     ];
-
-    public function supplier(): BelongsTo
-    {
-        return $this->belongsTo(Supplier::class);
-    }
 
     public function item(): BelongsTo
     {
         return $this->belongsTo(Item::class);
     }
 
-    public function order(): BelongsTo
+    public function goodsReceivingItem(): BelongsTo
     {
-        return $this->belongsTo(Order::class);
+        return $this->belongsTo(GoodsReceivingItem::class);
     }
 
     public function jobItems(): HasMany

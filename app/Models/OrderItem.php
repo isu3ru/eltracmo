@@ -8,37 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class JobItem extends Model
+class OrderItem extends Model
 {
     use HasFactory;
     use HasUuid;
     use SoftDeletes;
 
     protected $fillable = [
-        'job_id',
+        'id',
+        'order_id',
         'item_id',
-        'is_stock_item',
-        'received_at',
-        'stock_id',
         'quantity',
     ];
 
-    public function job(): BelongsTo
+    public function order(): BelongsTo
     {
-        return $this->belongsTo(Job::class);
+        return $this->belongsTo(Order::class);
     }
 
     public function item(): BelongsTo
     {
         return $this->belongsTo(Item::class);
     }
-
-    public function stock(): BelongsTo
-    {
-        return $this->belongsTo(Stock::class);
-    }
-
-    protected $casts = [
-        'received_at' => 'datetime',
-    ];
 }
