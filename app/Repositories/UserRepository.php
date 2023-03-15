@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 class UserRepository implements Contracts\UserRepositoryInterface
 {
-
     /**
      * @inheritDoc
      */

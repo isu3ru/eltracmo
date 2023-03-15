@@ -1,0 +1,21 @@
+Forms
+-----
+Customers
+- Customer Register
+- Vehicles
+- Complaints
+- Payments
+
+Jobs
+- Appontments
+- Jobs
+
+Inventory
+- Items
+- Goods Receivings
+
+System
+- Employees
+- Holiday Calendar
+- Suppliers
+- Users
