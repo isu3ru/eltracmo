@@ -62,3 +62,4 @@
     </div>
 </div>
 <!-- Left Sidebar End -->
+<?php /**PATH /home/isuru/Documents/Projects/eltracmo/resources/views/layouts/sidebar.blade.php ENDPATH**/ ?>
