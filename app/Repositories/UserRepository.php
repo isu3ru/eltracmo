@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Models\User;
+
 class UserRepository implements Contracts\UserRepositoryInterface
 {
     /**
@@ -9,7 +11,7 @@ class UserRepository implements Contracts\UserRepositoryInterface
      */
     public function create(array $data)
     {
-        // TODO: Implement create() method.
+        return User::create($data);
     }
 
     /**
@@ -17,7 +19,7 @@ class UserRepository implements Contracts\UserRepositoryInterface
      */
     public function find(string $id)
     {
-        // TODO: Implement find() method.
+        return User::whereId($id)->first();
     }
 
     /**
@@ -25,7 +27,11 @@ class UserRepository implements Contracts\UserRepositoryInterface
      */
     public function update(string $id, array $data)
     {
-        // TODO: Implement update() method.
+        $user = $this->find($id);
+        if (!$user) {
+            return null;
+        }
+        return $user->update($data);
     }
 
     /**
@@ -33,7 +39,11 @@ class UserRepository implements Contracts\UserRepositoryInterface
      */
     public function delete(string $id)
     {
-        // TODO: Implement delete() method.
+        $user = $this->find($id);
+        if (!$user) {
+            return null;
+        }
+        return $user->delete();
     }
 
     /**
@@ -41,6 +51,6 @@ class UserRepository implements Contracts\UserRepositoryInterface
      */
     public function list()
     {
-        // TODO: Implement list() method.
+        return User::all();
     }
 }

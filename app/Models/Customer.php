@@ -20,8 +20,8 @@ class Customer extends Model
         'last_name',
         'address',
         'user_id',
-        'mobile_number_verified_at',
         'is_mobile_customer',
+        'photo',
     ];
 
     public function user(): BelongsTo

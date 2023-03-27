@@ -18,9 +18,10 @@ class CustomerAuthTest extends TestCase
      */
     public function testIfACustomerCanRegister()
     {
-        $response = $this->postJson('/api/customer/register', [
-            'name' => "Isuru Ranawaka",
-            'email' => "isu3ru@gmail.com",
+        $response = $this->postJson(route('customer.register'), [
+            'first_name' => "Isuru",
+            'last_name' => "Ranawaka",
+            'mobile_number' => "0712912826",
             'password' => 'password',
             'password_confirmation' => 'password',
         ]);
@@ -36,13 +37,13 @@ class CustomerAuthTest extends TestCase
         // create new user
         User::create([
             'name' => 'Isuru Ranawaka',
-            'email' => 'isu3ru@gmail.com',
+            'mobile_number' => "0712912826",
             'password' => Hash::make('password'),
         ]);
 
         // check if the user exists
-        $response = $this->postJson('/api/customer/login', [
-            'email' => 'isu3ru@gmail.com',
+        $response = $this->postJson(route('customer.login'), [
+            'mobile_number' => "0712912826",
             'password' => 'password',
         ]);
 
@@ -61,13 +62,13 @@ class CustomerAuthTest extends TestCase
         // create new user
         User::create([
             'name' => 'Isuru Ranawaka',
-            'email' => 'isu3ru@gmail.com',
+            'mobile_number' => "0712912826",
             'password' => Hash::make('password'),
         ]);
 
         // check if the user exists
-        $response = $this->postJson('/api/customer/login', [
-            'email' => 'isu3ru@gmail.com',
+        $response = $this->postJson(route('customer.login'), [
+            'mobile_number' => "0712912826",
             'password' => 'password',
         ]);
 
@@ -77,14 +78,14 @@ class CustomerAuthTest extends TestCase
         $token = $response->json('token');
 
         // get the user details
-        $user = $this->getJson('/api/customer/user', headers: [
+        $user = $this->getJson(route('customer.user'), headers: [
             'Authorization' => 'Bearer ' . $token
         ]);
 
         $user->assertStatus(200)
             ->assertJson([
                 'name' => 'Isuru Ranawaka',
-                'email' => 'isu3ru@gmail.com',
+                'mobile_number' => "0712912826",
             ]);
     }
 
@@ -96,19 +97,19 @@ class CustomerAuthTest extends TestCase
         // create new user
         $user = User::create([
             'name' => 'Isuru Ranawaka',
-            'email' => 'isu3ru@gmail.com',
+            'mobile_number' => "0712912826",
             'password' => Hash::make('password'),
         ]);
 
         // check if the user exists
-        $response = $this->postJson('/api/customer/login', [
-            'email' => 'isu3ru@gmail.com',
+        $response = $this->postJson(route('customer.login'), [
+            'mobile_number' => "0712912826",
             'password' => 'password',
         ]);
         $token = $response->json('token');
 
         // logout the user
-        $response = $this->postjson('/api/customer/logout', headers: [
+        $response = $this->postjson(route('customer.logout'), headers: [
             'Authorization' => 'Bearer ' . $token,
         ]);
 
@@ -128,7 +129,7 @@ class CustomerAuthTest extends TestCase
     public function testIfACustomerCannotAccessWithoutAToken()
     {
         // get the user details
-        $response = $this->getJson('/api/customer/user');
+        $response = $this->getJson(route('customer.user'));
 
         // check if the response code is 401
         $response->assertStatus(401);
