@@ -34,6 +34,11 @@ class Customer extends Model
         return $this->hasMany(Invoice::class);
     }
 
+    public function vehicles()
+    {
+        return $this->hasMany(Vehicle::class);
+    }
+
     /**
      * Get the customer's full name.
      */

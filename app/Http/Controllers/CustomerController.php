@@ -24,6 +24,7 @@ class CustomerController extends Controller
         $validated = $request->validate([
             'first_name' => 'required|string',
             'last_name' => 'required|string',
+            'email' => 'required|email',
             'address' => 'nullable|string',
         ]);
 
@@ -46,8 +47,13 @@ class CustomerController extends Controller
         // update customer
         $customer->update($data);
 
+        $customer->user()->update([
+            'email' => $validated['email'],
+        ]);
+
         return response()->json([
-            'message' => 'Successfully updated customer profile!'
+            'message' => 'Successfully updated customer profile!',
+            'status' => 'success',
         ]);
     }
 

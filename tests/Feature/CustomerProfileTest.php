@@ -45,9 +45,9 @@ class CustomerProfileTest extends TestCase
         // create customer for the user
         $user->customer()->create(
             [
-                'first_name' => $this->faker->firstName,
-                'last_name' => $this->faker->lastName,
-                'address' => $this->faker->address,
+                'first_name' => 'Isuru',
+                'last_name' => 'Ranawaka',
+                'address' => 'Kurunegala',
             ]
         );
 
@@ -56,16 +56,20 @@ class CustomerProfileTest extends TestCase
 
         // test if the customer can update the profile
         $newData = [
-            'first_name' => $this->faker->firstName,
-            'last_name' => $this->faker->lastName,
-            'address' => $this->faker->address,
+            'first_name' => 'Bryan',
+            'last_name' => 'Adams',
+            'address' => 'Toronto',
+            'email' => 'bryan@bryanadams.com',
         ];
+
         $response = $this->post(route('customer.profile.update'), $newData);
 
         // assert that the response is ok
         $response->assertStatus(200);
 
-        // assert that the customer profile has been updated
-        $this->assertDatabaseHas('customers', $newData);
+        // get the customer profile
+        $response = $this->get(route('customer.profile.get'));
+        // check if response has changed details
+        $response->assertJsonFragment($newData);
     }
 }

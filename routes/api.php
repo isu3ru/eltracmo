@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('customer')->controller(AuthController::class)->group(
@@ -20,6 +21,14 @@ Route::prefix('customer')->controller(AuthController::class)->group(
                         Route::post('/profile', 'update')->name('customer.profile.update');
                     }
                 );
+
+                Route::controller(VehicleController::class)->group(callback: function () {
+                    Route::get('/vehicles', 'index')->name('customer.vehicles.index');
+                    Route::post('/vehicles', 'store')->name('customer.vehicles.store');
+                    Route::get('/vehicles/{vehicle}', 'show')->name('customer.vehicles.show');
+                    Route::put('/vehicles/{vehicle}', 'update')->name('customer.vehicles.update');
+                    Route::delete('/vehicles/{vehicle}', 'destroy')->name('customer.vehicles.destroy');
+                });
             }
         );
     }

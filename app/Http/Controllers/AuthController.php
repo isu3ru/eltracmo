@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-
-
     /**
      * Register a new user
      */
@@ -23,7 +21,7 @@ class AuthController extends Controller
                 'first_name'    => 'required|string',
                 'last_name'     => 'required|string',
                 'mobile_number' => 'required|string',
-                'password'      => 'required|string|confirmed',
+                'password'      => 'required|string',
             ]
         );
 
@@ -44,7 +42,7 @@ class AuthController extends Controller
         );
 
         return response()->json(
-            ['message' => 'Successfully created customer account!'],
+            ['message' => 'Successfully created customer account!', 'status' => 'success',],
             201
         );
 

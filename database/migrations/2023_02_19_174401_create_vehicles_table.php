@@ -16,11 +16,14 @@ return new class extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('customer_id');
+            $table->string('title')->nullable();
             $table->string('make');
             $table->string('model');
-            $table->string('registered_year');
+            $table->string('edition')->nullable();
+            $table->string('registered_year')->nullable();
             $table->string('registration_number');
-            $table->string('color');
+            $table->unsignedInteger('current_mileage')->nullable();
+            $table->string('color')->nullable();
             $table->string('remarks')->nullable();
             $table->timestamps();
             $table->softDeletes();

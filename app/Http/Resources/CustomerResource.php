@@ -20,7 +20,7 @@ class CustomerResource extends JsonResource
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'mobile_number' => $this->mobile_number,
-            'email' => $this->email,
+            'email' => $this->user->email,
             'address' => $this->address,
             'photo' => URL::asset('storage/' . str_replace('public/', '', $this->photo)),
             'user' => new UserResource($this->user),

@@ -1,15 +1,15 @@
 Authentication
-    Login
-    Register
+    Login*
+    Register*
 Authorization
-    Permissions
+    Permissions?
 Verification
-    Email
-    Telephone
+    Email?
+    Telephone?
 Profile
-    Update Details
-    Update Telephone
-    Request Deletion
+    Update Details*
+    Update Telephone?
+    Request Deletion?
 Apppointments
     Schedule
     Cancel
@@ -20,7 +20,7 @@ Apppointments
         By Status
 Jobs
     Status Tracking
-        Current status
+        Current Status
         Status History
     Invoices
         Online Payment
@@ -35,3 +35,8 @@ Complaints
     List
 Items
     Add
+Vehilces
+    Add*
+    List*
+    Single
+    Delete

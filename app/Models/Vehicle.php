@@ -17,10 +17,13 @@ class Vehicle extends Model
     protected $fillable = [
         'id',
         'customer_id',
+        'title',
         'make',
         'model',
+        'edition',
         'registered_year',
         'registration_number',
+        'current_mileage',
         'color',
         'remarks',
     ];
