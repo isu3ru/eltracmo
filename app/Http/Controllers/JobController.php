@@ -43,7 +43,6 @@ class JobController extends Controller
         $user = $job->appointment->vehicle->customer->user;
         // send HTTP request.
         $this->sendSms($user->mobile_number, "You have an active job in Savimal Auto Center.\nYour job for appointment at " . $job->appointment->appointment_date . ' ' . $job->appointment->appointment_time . " has been started.\nPlease await for more updates.");
-
         return response()->json(new JobResource($job), 201);
     }
 
