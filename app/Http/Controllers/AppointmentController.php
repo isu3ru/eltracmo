@@ -115,4 +115,15 @@ class AppointmentController extends Controller
         $appointments = Appointment::whereDate('appointment_date', $selectedDate)->get();
         return AppointmentResource::collection($appointments);
     }
+
+
+    /**
+     * admin appointments view
+     *
+     * @return void
+     */
+    public function view()
+    {
+        return view('appointments.index');
+    }
 }

@@ -73,4 +73,14 @@ class CustomerController extends Controller
     public function deleteAccount()
     {
     }
+
+    /**
+     * admin customer register
+     *
+     * @return void
+     */
+    public function view()
+    {
+        return view('customers.index');
+    }
 }
