@@ -32,4 +32,4 @@
 </body>
 
 </html>
-<?php /**PATH /home/isuru/Documents/Projects/eltracmo/resources/views/layouts/master.blade.php ENDPATH**/ ?>
+<?php /**PATH C:\Users\CEYTECH\Documents\Projects\isuru\eltracmo\resources\views/layouts/master.blade.php ENDPATH**/ ?>

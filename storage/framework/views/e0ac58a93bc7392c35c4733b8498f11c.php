@@ -143,4 +143,4 @@ unset($__errorArgs, $__bag); ?>
         <!-- end account-pages -->
     <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/isuru/Documents/Projects/eltracmo/resources/views/auth/login.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master-without-nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\CEYTECH\Documents\Projects\isuru\eltracmo\resources\views/auth/login.blade.php ENDPATH**/ ?>

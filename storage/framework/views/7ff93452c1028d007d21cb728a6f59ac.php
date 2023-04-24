@@ -49,4 +49,4 @@
 <!-- App js -->
 <script src="<?php echo e(URL::asset('assets/js/app.js')); ?>"></script>
 
-<?php echo $__env->yieldContent('script-bottom'); ?><?php /**PATH /home/isuru/Documents/Projects/eltracmo/resources/views/layouts/vendor-scripts.blade.php ENDPATH**/ ?>
+<?php echo $__env->yieldContent('script-bottom'); ?><?php /**PATH C:\Users\CEYTECH\Documents\Projects\isuru\eltracmo\resources\views/layouts/vendor-scripts.blade.php ENDPATH**/ ?>

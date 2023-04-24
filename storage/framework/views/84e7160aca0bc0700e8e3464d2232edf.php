@@ -11,4 +11,4 @@
             </div>
         </div>
     </div>
-</footer><?php /**PATH /home/isuru/Documents/Projects/eltracmo/resources/views/layouts/footer.blade.php ENDPATH**/ ?>
+</footer><?php /**PATH C:\Users\CEYTECH\Documents\Projects\isuru\eltracmo\resources\views/layouts/footer.blade.php ENDPATH**/ ?>

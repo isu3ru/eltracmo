@@ -44,14 +44,27 @@ class AppointmentController extends Controller
 
         $appointment = Appointment::create($validated);
 
-        return response()->json($appointment, 201);
+        return response()->json(AppointmentResource::make($appointment), 201);
     }
 
+    /**
+     * Show the appointment details
+     *
+     * @param Appointment $appointment
+     * @return void
+     */
     public function show(Appointment $appointment)
     {
         return response()->json(new AppointmentResource($appointment));
     }
 
+    /**
+     * Update appointment details
+     *
+     * @param Request $request
+     * @param Appointment $appointment
+     * @return void
+     */
     public function update(Request $request, Appointment $appointment)
     {
         $validated = $request->validate([
@@ -92,5 +105,14 @@ class AppointmentController extends Controller
         $appointment->save();
 
         return response()->json(['message' => 'Appointment successfully cancelled.'], 200);
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function byDate($selectedDate)
+    {
+        $appointments = Appointment::whereDate('appointment_date', $selectedDate)->get();
+        return AppointmentResource::collection($appointments);
     }
 }
