@@ -85,4 +85,14 @@ class VehicleController extends Controller
     {
         return response()->json($vehicle, 200);
     }
+
+    /**
+     * admin add vehicles
+     *
+     * @return void
+     */
+    public function view()
+    {
+        return view('vehicles.index');
+    }
 }
