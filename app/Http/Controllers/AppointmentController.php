@@ -116,7 +116,6 @@ class AppointmentController extends Controller
         return AppointmentResource::collection($appointments);
     }
 
-
     /**
      * admin appointments view
      *

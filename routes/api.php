@@ -59,8 +59,9 @@ Route::prefix('staff')->group(
             function () {
                 Route::controller(JobController::class)->group(function () {
                     Route::get('/jobs', 'allJobs')->name('staff.jobs.all');
-                    Route::post('/jobs', 'create')->name('staff.jobs.create');
-                    Route::put('/jobs/status', 'updateStatus')->name('staff.jobs.update');
+                    Route::post('/jobs/{appointment}', 'create')->name('staff.jobs.create');
+                    Route::put('/jobs/status/{job}', 'updateStatus')->name('staff.jobs.update');
+                    Route::get('/jobs/running', 'runningJobs')->name('staff.jobs.running');
                 });
             }
         );

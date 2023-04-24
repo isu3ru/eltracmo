@@ -51,4 +51,17 @@ class Customer extends Model
     protected $casts = [
         'mobile_number_verified_at' => 'datetime',
     ];
+
+
+    /**
+     * Route notificaiton for lankabell sms
+     *
+     * @param \Illuminate\Notifications\Notification $notification
+     * @return void
+     */
+    public function routeNotificationForLankabell($notification)
+    {
+        // get phone number from the profile
+        return $this->user->mobile_number;
+    }
 }

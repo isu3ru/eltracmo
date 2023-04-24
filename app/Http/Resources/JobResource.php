@@ -14,6 +14,12 @@ class JobResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'appointment_id' => AppointmentResource::make($this->appointment),
+            'type' => $this->id,
+            'status' => $this->id,
+            'remarks' => $this->id,
+        ];
     }
 }
