@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\JobStatus;
 use App\Http\Resources\JobResource;
 use App\Models\Appointment;
 use App\Models\Job;
+use App\Traits\SmsNotifiable;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
+    use SmsNotifiable;
+
     public function allJobs()
     {
         $jobs = Job::all();
@@ -31,9 +35,14 @@ class JobController extends Controller
         $job = Job::create([
             'appointment_id' => $appointment->id,
             'type' => $validated['type'],
-            'status' => $validated['status'],
+            'status' => JobStatus::ONGOING->value,
             'remarks' => $validated['remarks'],
         ]);
+
+        // get customer
+        $user = $job->appointment->vehicle->customer->user;
+        // send HTTP request.
+        $this->sendSms($user->mobile_number, "You have an active job in Savimal Auto Center.\nYour job for appointment at " . $job->appointment->appointment_date . ' ' . $job->appointment->appointment_time . " has been started.\nPlease await for more updates.");
 
         return response()->json(new JobResource($job), 201);
     }
@@ -57,5 +66,11 @@ class JobController extends Controller
     public function getStatusesForJob(Job $job)
     {
         return response()->json($job->jobStatuses);
+    }
+
+    public function getRunningJobs()
+    {
+        $jobs = Job::where('status', 'ongoing')->get();
+        return JobResource::collection($jobs);
     }
 }
