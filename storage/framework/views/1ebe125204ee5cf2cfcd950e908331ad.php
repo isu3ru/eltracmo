@@ -16,4 +16,4 @@
         </div>
     </div>
 </div>
-<!-- end page title --><?php /**PATH /home/isuru/Documents/Projects/eltracmo/resources/views/components/breadcrumb.blade.php ENDPATH**/ ?>
+<!-- end page title --><?php /**PATH C:\Users\CEYTECH\Documents\Projects\isuru\eltracmo\resources\views/components/breadcrumb.blade.php ENDPATH**/ ?>

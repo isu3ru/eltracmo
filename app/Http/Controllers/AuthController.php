@@ -27,9 +27,9 @@ class AuthController extends Controller
 
         $user = User::create(
             [
-                'name'          => $request->first_name.' '.$request->last_name,
-                'mobile_number' => $request->mobile_number,
+                'name'          => $request->first_name . ' ' . $request->last_name,
                 'password'      => Hash::make($request->password),
+                'mobile_number' => $request->mobile_number,
             ]
         );
 
@@ -38,6 +38,7 @@ class AuthController extends Controller
             [
                 'first_name'    => $request->first_name,
                 'last_name'     => $request->last_name,
+                'is_mobile_customer' => 1,
             ]
         );
 
@@ -45,8 +46,7 @@ class AuthController extends Controller
             ['message' => 'Successfully created customer account!', 'status' => 'success',],
             201
         );
-
-    }//end register()
+    } //end register()
 
 
     /**
@@ -79,8 +79,7 @@ class AuthController extends Controller
         return response()->json(
             ['token' => $token]
         );
-
-    }//end login()
+    } //end login()
 
 
     /**
@@ -97,8 +96,7 @@ class AuthController extends Controller
         return response()->json(
             ['message' => 'Successfully logged out']
         );
-
-    }//end logout()
+    } //end logout()
 
 
     /**
@@ -107,8 +105,7 @@ class AuthController extends Controller
     public function user(Request $request): JsonResponse
     {
         return response()->json(UserResource::make($request->user()));
-
-    }//end user()
+    } //end user()
 
 
 }//end class

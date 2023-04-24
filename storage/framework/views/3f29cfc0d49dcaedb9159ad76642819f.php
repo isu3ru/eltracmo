@@ -18,4 +18,4 @@
         impedit explicabo quam, vel quasi quis et expedita assumenda maxime asperiores perferendis ipsum natus?</p>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/isuru/Documents/Projects/eltracmo/resources/views/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\CEYTECH\Documents\Projects\isuru\eltracmo\resources\views/index.blade.php ENDPATH**/ ?>
